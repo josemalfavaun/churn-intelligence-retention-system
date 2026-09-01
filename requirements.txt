@@ -6,7 +6,6 @@ plotly
 streamlit
 xgboost
 lightgbm
-imbalanced-learn
 shap
 scipy
 joblib

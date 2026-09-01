@@ -94,3 +94,25 @@ Add tests, optional Docker, optional GitHub Actions, and repo cleanup.
 ### Phase 10 — Portfolio packaging
 
 Create final README, executive summary, LinkedIn post, and CV bullets.
+
+## Status
+
+All phases (0-10) are implemented. See `docs/modeling_report.md` for the
+model comparison and business framing, and the root `README.md` for a
+quickstart and results summary.
+
+### CV / LinkedIn bullets
+
+- Built an end-to-end churn prediction and retention decision system on the
+  IBM Telco dataset (7K+ customers): feature engineering, 4-model comparison
+  (Logistic Regression, Random Forest, XGBoost, LightGBM), SHAP-based
+  per-customer explainability, and a rule-based retention recommendation
+  engine, all served through an interactive Streamlit dashboard.
+- Selected model on PR-AUC rather than ROC-AUC to account for class
+  imbalance; champion model captures 28% of churners in the top 10% of
+  customers ranked by risk (2.8x lift over random targeting).
+- Translated SHAP feature attributions into business-readable "reason
+  codes" and combined them with a customer value-at-risk estimate to drive
+  a segment-specific (value x risk) retention action engine.
+- Covered the pipeline with 36 automated tests (data, features, models,
+  explainability, recommendations).
