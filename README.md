@@ -45,4 +45,44 @@ The dataset includes customer-level information such as tenure, contract type, p
 
 ## Project Status
 
-Currently in Phase 0: project setup and architecture definition.
+Complete. All phases in `docs/project_plan.md` (data acquisition through
+portfolio packaging) are implemented and tested.
+
+## Quickstart
+
+```bash
+make install                       # install dependencies
+python -m src.features.build_features   # optional: inspect the feature table
+python -m src.models.train_model        # trains 4 candidates, saves the champion
+python -m src.models.predict            # scores all customers with the champion
+make test                          # 36 tests across data, features, models, explainability, recommendations
+make run-app                       # launch the Streamlit dashboard
+```
+
+The dashboard needs a trained model first (`python -m src.models.train_model`);
+it will tell you if one isn't found yet.
+
+## Results Summary
+
+Champion model: **XGBoost**, selected on PR-AUC (0.647) because churn is
+imbalanced (~27% positive rate) and PR-AUC better reflects ranking quality
+for the minority class than ROC-AUC does. At a 10%-of-portfolio contact
+rate, the champion captures ~28% of churners with ~74% precision (2.8x lift
+over random). Full comparison and business framing in
+`docs/modeling_report.md`.
+
+## Project Structure
+
+```
+src/
+  data/            raw loading + cleaning
+  features/        business feature engineering (tenure buckets, risk scores, value at risk, ...)
+  models/          training, comparison, registry, champion persistence, scoring
+  evaluation/      classification + business/ROI metrics
+  explainability/  SHAP values -> human-readable reason codes
+  recommendations/ rule-based retention action engine
+app/
+  streamlit_app.py dashboard: overview, customer explorer, customer detail, model performance
+docs/              data dictionary, EDA-driven retention strategy, modeling report, project plan
+tests/             36 tests covering data, features, models, explainability, recommendations
+```

@@ -4,6 +4,15 @@
 
 IBM Telco Customer Churn.
 
+The raw CSV is intentionally not committed to the repo (`data/raw/` is
+gitignored). To reproduce locally, download it and save it as
+`data/raw/WA_Fn-UseC_-Telco-Customer-Churn.csv`:
+
+```bash
+curl -L -o data/raw/WA_Fn-UseC_-Telco-Customer-Churn.csv \
+  https://raw.githubusercontent.com/IBM/telco-customer-churn-on-icp4d/master/data/Telco-Customer-Churn.csv
+```
+
 This dataset contains customer-level information from a fictional telecommunications company. It includes customer demographics, account information, subscribed services, charges, and whether the customer churned.
 
 ## Target Variable
